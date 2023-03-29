@@ -1,0 +1,47 @@
+<h1 class="text-center">{{group.name}}</h1>
+<input
+  style="display: none"
+  type="file" (change)="onFileChanged($event)"
+  #fileInput>
+<button (click)="fileInput.click()">Select File</button>
+<button (click)="onUpload()">Upload!</button>
+<nb-card *ngFor="let feed of groupFeed">
+    <nb-card-header>{{feed.from.name}}</nb-card-header>
+    <nb-card-body>
+        <img [src]="feed.full_picture" class="rounded mx-auto d-block" alt="" srcset="">
+      {{feed.message}}
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p>pozitive reaction {{feed.poz_reactions}} <ion-icon name="arrow-up-outline"></ion-icon></p>
+                </div>
+                <div class="col-sm-3">
+                    <p>neagtive reaction {{feed.negative_reactions}} <ion-icon name="arrow-down-outline"></ion-icon></p>
+                </div>
+                <div class="col-sm-4 text-center" (click)="Open(feed)" expand="block">comments <ion-icon name="chatbubble-outline"></ion-icon></div>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
+<ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="Close()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <nb-card *ngFor="let comment of comments">
+            <nb-card-header *ngIf="comment.from">{{comment.from.name}}</nb-card-header>
+            <nb-card-body>
+              {{comment.message}}
+            </nb-card-body>
+        </nb-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>

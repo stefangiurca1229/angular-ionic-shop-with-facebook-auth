@@ -1,20 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<nb-card size="small">
+    <nb-list>
+      <nb-list-item *ngFor="let group of groups" (click)="accessGroup(group)">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+              <img [src]="group.picture.data.url" alt="buba">
+            </div>
+            <div class="col-sm-8">{{group.name}}</div>
+          </div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
